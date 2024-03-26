@@ -68,14 +68,16 @@ async function newEvent(){
     try {
         const response = await fetch(API +"/events", {
             method: "POST",
-            // headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
+              id: state.events.length + 1,
               name: $eventName.value,
               description: $eventDesc.value,
               date: $eventDateTime.value,
-              id: state.events.length =1,
+              location: $eventLocation.value,
             })
         });
+        console.log(response);
     
         if(!response.ok){
           throw new Error("Failed to create new event");
